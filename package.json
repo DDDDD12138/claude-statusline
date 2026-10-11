@@ -1,0 +1,24 @@
+{
+  "name": "claude-statusline",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Custom Claude Code status line: TypeScript source, bundled to a single dependency-free script",
+  "type": "module",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=12"
+  },
+  "scripts": {
+    "build": "esbuild src/main.ts --bundle --platform=node --target=node22 --format=esm --outfile=dist/statusline.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "check": "pnpm lint && pnpm typecheck"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.15",
+    "@types/node": "^24.19.2",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
+  }
+}

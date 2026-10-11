@@ -1,0 +1,3 @@
+# esbuild's postinstall only verifies its platform binary; allow it so installs are quiet and reproducible.
+allowBuilds:
+  esbuild: true

@@ -1,0 +1,2 @@
+# Force LF everywhere: the repo is shared between Windows and WSL.
+* text=auto eol=lf
