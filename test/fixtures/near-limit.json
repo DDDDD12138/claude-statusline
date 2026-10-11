@@ -1,0 +1,11 @@
+{
+  "session_id": "fixture-near-limit",
+  "model": { "id": "claude-opus-5-5", "display_name": "Opus 5.5" },
+  "effort": { "level": "max" },
+  "exceeds_200k_tokens": true,
+  "context_window": {
+    "context_window_size": 1000000,
+    "used_percentage": 92.6,
+    "remaining_percentage": 7.4
+  }
+}

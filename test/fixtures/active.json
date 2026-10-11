@@ -1,0 +1,28 @@
+{
+  "session_id": "fixture-active",
+  "version": "2.1.0",
+  "model": { "id": "claude-fable-5-1", "display_name": "Fable 5.1" },
+  "effort": { "level": "high" },
+  "thinking": { "enabled": true },
+  "output_style": { "name": "default" },
+  "cost": {
+    "total_cost_usd": 0.42,
+    "total_duration_ms": 1830000,
+    "total_api_duration_ms": 412000,
+    "total_lines_added": 120,
+    "total_lines_removed": 18
+  },
+  "context_window": {
+    "total_input_tokens": 61000,
+    "total_output_tokens": 4200,
+    "context_window_size": 200000,
+    "used_percentage": 31,
+    "remaining_percentage": 69,
+    "current_usage": {
+      "input_tokens": 9000,
+      "output_tokens": 1200,
+      "cache_creation_input_tokens": 2000,
+      "cache_read_input_tokens": 50000
+    }
+  }
+}
