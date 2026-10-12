@@ -12,6 +12,7 @@
     "build": "node scripts/build.ts",
     "dev": "node scripts/build.ts --watch",
     "preview": "node scripts/preview.ts",
+    "svg": "pnpm build && node scripts/svg.ts",
     "test": "node --test \"test/**/*.test.ts\"",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
