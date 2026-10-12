@@ -1,10 +1,10 @@
 /**
- * Bundle src/main.ts into dist/statusline.mjs.
+ * Bundle the status line and the installer into dist/.
  *
  *   node scripts/build.ts          one-shot build
  *   node scripts/build.ts --watch  rebuild on change and preview each result
  *
- * Not minified: the bundle runs locally, and readable stack traces matter more.
+ * Not minified: the bundles run locally, and readable stack traces matter more.
  */
 import { fileURLToPath } from 'node:url';
 import { type BuildOptions, build, context } from 'esbuild';
@@ -17,9 +17,7 @@ const WATCH = process.argv.includes('--watch');
 const TAG = process.env['STATUSLINE_VERSION'];
 const BUILD_LABEL = TAG || `dev build ${new Date().toISOString().slice(0, 16)}Z`;
 
-const options: BuildOptions = {
-  entryPoints: ['src/main.ts'],
-  outfile: 'dist/statusline.mjs',
+const shared: BuildOptions = {
   bundle: true,
   platform: 'node',
   target: 'node22',
@@ -35,9 +33,22 @@ const options: BuildOptions = {
   absWorkingDir: ROOT,
 };
 
+const statusline: BuildOptions = {
+  ...shared,
+  entryPoints: ['src/main.ts'],
+  outfile: 'dist/statusline.mjs',
+};
+
+const installer: BuildOptions = {
+  ...shared,
+  entryPoints: ['src/installer/main.ts'],
+  outfile: 'dist/install.mjs',
+};
+
 if (WATCH) {
+  await build(installer);
   const ctx = await context({
-    ...options,
+    ...statusline,
     plugins: [
       {
         name: 'preview',
@@ -55,5 +66,5 @@ if (WATCH) {
   await ctx.watch();
   process.stdout.write('watching src/ … (Ctrl+C to stop)\n');
 } else {
-  await build(options);
+  await Promise.all([build(statusline), build(installer)]);
 }

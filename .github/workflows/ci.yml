@@ -64,4 +64,4 @@ jobs:
           args=(--verify-tag --generate-notes)
           status=$(gh api "repos/$GITHUB_REPOSITORY/compare/main...$GITHUB_SHA" --jq .status)
           case "$status" in identical|behind) ;; *) args+=(--prerelease);; esac
-          gh release create "$GITHUB_REF_NAME" dist/statusline.mjs "${args[@]}"
+          gh release create "$GITHUB_REF_NAME" dist/statusline.mjs dist/install.mjs "${args[@]}"
